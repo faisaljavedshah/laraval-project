@@ -4,16 +4,19 @@ phases:
      runtime-versions:
          php: 8.1
          nodejs: 16
-    
+     commands:
+         
+         - curl -sS <https://getcomposer.org/installer> | php -- --install-dir=/usr/local/bin --filename=composer
    pre_build:
      commands:
         #- cp .env.staging .env
          - aws s3 cp s3://elasticbeanstalk-us-east-1-424023781758/.env.staging /.env
-        # - npm install
+         - composer install
+         - npm install
    build:
      commands:
-        # - npm run production
-         - php artisan migrate --force
+         - npm run production
+         - php artisan migrate
          - php artisan db:seed
 artifacts:
    files:
