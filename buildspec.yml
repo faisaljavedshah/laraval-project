@@ -8,12 +8,12 @@ phases:
    pre_build:
      commands:
         #- cp .env.staging .env
-         - aws s3 cp s3://elasticbeanstalk-us-east-1-424023781758/.env.staging /.env
+         - aws s3 cp s3://elasticbeanstalk-us-east-1-424023781758/env.staging /.env
          - composer install
          - npm install
    build:
      commands:
-         - npm run build
+         - npm run dev
          - php artisan migrate --force
          - php artisan db:seed
 artifacts:
