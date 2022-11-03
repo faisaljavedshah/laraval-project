@@ -4,20 +4,15 @@ phases:
      runtime-versions:
          php: 8.1
          nodejs: 16
-     commands:
-         - sudo apt update
-         - sudo apt install libpq-dev libzip-dev
-         - sudo apt install php-pgsql
-         - curl -sS <https://getcomposer.org/installer> | php -- --install-dir=/usr/local/bin --filename=composer
+    
    pre_build:
      commands:
         #- cp .env.staging .env
          - aws s3 cp s3://elasticbeanstalk-us-east-1-424023781758/.env.staging /.env
-         - composer install
-         - npm install
+        # - npm install
    build:
      commands:
-         - npm run production
+        # - npm run production
          - php artisan migrate --force
          - php artisan db:seed
 artifacts:
