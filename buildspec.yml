@@ -10,6 +10,7 @@ phases:
         #- cp .env.staging .env
          - aws s3 cp s3://elasticbeanstalk-us-east-1-424023781758/env.staging .env
          - composer install
+         - npm cache clean --force
          - npm install
          - npm run dev
    build:
