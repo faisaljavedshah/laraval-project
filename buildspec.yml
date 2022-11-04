@@ -12,7 +12,7 @@ phases:
          - composer install
          - npm cache clean --force
          - npm install
-         - npm run dev
+        # - npm run dev
    build:
      commands:
          - php artisan migrate --force
